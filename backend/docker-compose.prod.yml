@@ -1,0 +1,18 @@
+version: '3'
+services:
+  geek_connekt:
+    environment:
+      - NODE_ENV=production
+    image: akshaymurari/geek-connect
+    command: node run start
+    volumes:
+      - ./notes:/app/notes
+    deploy:
+      mode: replicated
+      replicas: 8
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 2
+        delay: 10s
+

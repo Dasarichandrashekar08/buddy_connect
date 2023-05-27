@@ -1,0 +1,33 @@
+.ChatInterface{
+    .leftbox{
+        margin:2rem auto 2rem 0rem; 
+        background:rgba(214, 226, 228, 0.712);
+        max-width:45%;
+        width:max-content;
+        border-radius:5px;
+        padding:1.2rem;
+        white-space: wrap;
+        text-align:end;
+        @media screen and (max-width:600px){
+            max-width:60%;
+        }
+    }
+    .rightbox{
+        margin:2rem 0rem 2rem auto; 
+        background:#77abf0;
+        max-width:45%;
+        width:max-content;
+        overflow-wrap: wrap;
+        // border:1px solid black;
+        border-radius:5px;
+        text-align:end;
+        padding:1.2rem;
+        @media screen and (max-width:600px){
+            max-width:60%;
+        }
+    }
+    max-width: 80%;
+    @media screen and (max-width:600px){
+        max-width:100%;
+    }
+}
