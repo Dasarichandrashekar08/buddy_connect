@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: "/tmp/" }));
 
-require("./database/connect");
+ require("./database/connect");
 
-require("./redis/redis").connect();
+// require("./redis/redis").connect();
 
 const port = process.env.PORT || 8000;
 const server = app.listen(port, (e) => {

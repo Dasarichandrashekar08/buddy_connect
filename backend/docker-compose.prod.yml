@@ -1,9 +1,9 @@
 version: '3'
 services:
-  geek_connekt:
+  buddy_connect:
     environment:
       - NODE_ENV=production
-    image: akshaymurari/geek-connect
+    image: chandrashekar/buddy_connect
     command: node run start
     volumes:
       - ./notes:/app/notes
