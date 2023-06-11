@@ -41,8 +41,8 @@ exports.approveAccount = async (req, res) => {
         await sgMail.send({
             to: email.toString(),
             from: "geekconnekt@gmail.com",
-            subject: "Welcome to Geek Connekt!",
-            html: `<div>Your now verified user of geek_connekt.please login with your creadentials</div>`,
+            subject: "Welcome to Buddy Connekt!",
+            html: `<div>Your now verified user of buddy_connekt.please login with your creadentials</div>`,
         });
         res.json({ message: "User created successfully" });
     } catch (error) {
