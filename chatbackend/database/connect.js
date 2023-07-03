@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongo_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.iolasks.mongodb.net/buddyconnect?retryWrites=true&w=majority`;
+const mongo_url = ''
 mongoose.connect(mongo_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
