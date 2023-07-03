@@ -379,7 +379,7 @@ export const OtherUserProfile = (props) => {
                                         <p>{userData.otherUser.username}</p>
                                         <small>
                                             Public
-                                            <i class="fas fa-caret-down"></i>
+                                            <i className="fas fa-caret-down"></i>
                                         </small>
                                     </div>
                                 </div>

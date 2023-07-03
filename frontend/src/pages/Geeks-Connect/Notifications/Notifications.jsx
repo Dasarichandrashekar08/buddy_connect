@@ -7,40 +7,40 @@ export default function Notifications() {
 
     return (
         <div
-            class="notification_dd"
+            className="notification_dd"
             style={{
                 position: "fixed",
             }}
         >
-            <ul class="notification_ul">
+            <ul className="notification_ul">
                 {newNotification !== undefined || newNotification !== null
                     ? newNotification.map((notification) => (
-                          <li class="success">
+                          <li className="success">
                               <div
-                                  class="notify_icon"
+                                  className="notify_icon"
                                   style={{
                                       background: `url(${notification.image}) no-repeat`,
                                       backgroundSize: "cover",
                                   }}
                               >
-                                  <span class="icon"></span>
+                                  <span className="icon"></span>
                               </div>
-                              <div class="notify_data">
-                                  <div class="title">
+                              <div className="notify_data">
+                                  <div className="title">
                                       <span>{notification.title}</span>
                                   </div>
-                                  <div class="sub_title">
+                                  <div className="sub_title">
                                       {notification.message}
                                   </div>
                               </div>
-                              <div class="notify_status">
+                              <div className="notify_status">
                                   <p>{notification.type}</p>
                               </div>
                           </li>
                       ))
                     : null}
-                <li class="show_all">
-                    <p class="link">Show All Activities</p>
+                <li className="show_all">
+                    <p className="link">Show All Activities</p>
                 </li>
             </ul>
         </div>

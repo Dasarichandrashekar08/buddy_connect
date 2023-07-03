@@ -228,7 +228,7 @@ const News = () => {
                       className="text-end mt-2 mb-0"
                       style={{ marginBottom: "-2rem" }}
                     >
-                      <figcaption class="blockquote-footer">
+                      <figcaption className="blockquote-footer">
                         posted by{" "}
                         <cite title="Source Title">{ele.postedBy}</cite>
                       </figcaption>

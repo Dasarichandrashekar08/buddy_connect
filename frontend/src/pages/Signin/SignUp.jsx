@@ -98,7 +98,7 @@ const SignUp = () => {
         if (values.password.length <= 4) {
             setFormError("Password must be atleast 4 characters Long!");
         } else if (values.username.length <= 4) {
-            setFormError("Password must be atleast 4 characters Long!");
+            setFormError("UserName must be atleast 4 characters Long!");
         } else {
             try {
                 const result = await axios({
