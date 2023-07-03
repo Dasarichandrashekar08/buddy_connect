@@ -314,7 +314,7 @@ function NotesBlog() {
                                               className="text-end mt-3 mb-0"
                                               style={{ marginBottom: "-2rem" }}
                                           >
-                                              <figcaption class="blockquote-footer">
+                                              <figcaption className="blockquote-footer">
                                                   posted by{" "}
                                                   <cite title="Source Title">
                                                       {note.postedBy}
@@ -392,7 +392,7 @@ function NotesBlog() {
                                               className="text-end mt-3 mb-0"
                                               style={{ marginBottom: "-2rem" }}
                                           >
-                                              <figcaption class="blockquote-footer">
+                                              <figcaption className="blockquote-footer">
                                                   posted by{" "}
                                                   <cite title="Source Title">
                                                       {note.postedBy}

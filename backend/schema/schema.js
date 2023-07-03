@@ -23,6 +23,7 @@ const {
     GraphQLInt,
     GraphQLList,
     GraphQLNonNull,
+    GraphQLBoolean
 } = graphql;
 
 const UserType = new GraphQLObjectType({
@@ -53,6 +54,7 @@ const UserType = new GraphQLObjectType({
         fullName: { type: GraphQLString },
         newNotifications: { type: GraphQLString },
         phoneNumber: { type: GraphQLString },
+        admin: {type:GraphQLBoolean}
     }),
 });
 
@@ -85,6 +87,7 @@ const authCheckType = new GraphQLObjectType({
         website: { type: GraphQLString },
         fullName: { type: GraphQLString },
         phoneNumber: { type: GraphQLString },
+        admin: {type: GraphQLBoolean},
     }),
 });
 
@@ -120,7 +123,6 @@ const RootQuery = new graphql.GraphQLObjectType({
             args: {
                 username: { type: GraphQLString },
                 password: { type: GraphQLString },
-                college: { type: GraphQLString },
             },
             resolve(parent, args) {
                 return userResolver(args);
@@ -160,6 +162,9 @@ const Mutation = new graphql.GraphQLObjectType({
                     type: new graphql.GraphQLNonNull(graphql.GraphQLString),
                 },
                 college: {
+                    type: new graphql.GraphQLNonNull(graphql.GraphQLString),
+                },
+                phoneNumber: {
                     type: new graphql.GraphQLNonNull(graphql.GraphQLString),
                 },
             },

@@ -17,6 +17,7 @@ import PreviewPdf from "./pages/PreviewPdf/PreviewPdf";
 import Attendance from "./pages/Geeks-Connect/Attendance/App";
 import AttendaceV2 from "./pages/Geeks-Connect/AttendanceV2/AttendaceV2";
 import SignUp from "./pages/Signin/SignUp";
+import ApproveRequests from "./pages/Geeks-Connect/Profile/ApproveRequests/ApproveRequest";
 import Chat from "./Chat/Chat";
 import ChatV2 from "./ChatV2/ChatV2";
 import ChatInterface from "./ChatInterface/ChatInterface";
@@ -47,6 +48,7 @@ const App = () => {
                     <Route path="/attendance1" element={<Attendance />} />
                     <Route path="/chat" element={<ChatV2 />} />
                     <Route path="/chat/:user" element={<ChatInterface/>}/>
+                    <Route path="/accountApprove" element={<ApproveRequests />}/>
                 </Routes>
             </HashRouter>
         </div>

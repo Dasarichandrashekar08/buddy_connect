@@ -14,8 +14,8 @@ import "./Signin.scss";
 import { ButtonBase } from "@mui/material";
 
 const LOGIN_USER = gql`
-    query auth($username: String!, $password: String!, $college: String!) {
-        auth(username: $username, password: $password, college: $college) {
+    query auth($username: String!, $password: String!) {
+        auth(username: $username, password: $password) {
             token
             result
         }
@@ -91,8 +91,7 @@ const Signin = () => {
         loginUser({
             variables: {
                 username: values.username,
-                password: values.password,
-                college: "CMRCET",
+                password: values.password
             },
         });
     };

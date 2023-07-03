@@ -28,6 +28,7 @@ const getUserData = async (args) => {
                 birthDate: user.birthDate,
                 fullName: user.fullName,
                 phoneNumber: user.phoneNumber,
+                admin: user.admin
             };
         }
         return {
@@ -70,6 +71,7 @@ const getOtherUserData = async (args) => {
                 birthDate: user.birthDate,
                 fullName: user.fullName,
                 phoneNumber: user.phoneNumber,
+                admin: user.admin,
             };
         }
         return {
@@ -87,8 +89,7 @@ const getOtherUserData = async (args) => {
 
 const userResolver = async (args) => {
     const user = await User.findOne({
-        username: args.username,
-        college: args.college,
+        username: args.username
     });
     console.log(user);
     if (user) {
@@ -168,6 +169,7 @@ const userAuthCheck = async (args) => {
                 birthDate: user.birthDate,
                 fullName: user.fullName,
                 phoneNumber: user.phoneNumber,
+                admin: user.admin,
             };
         }
         return {

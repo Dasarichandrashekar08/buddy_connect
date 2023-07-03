@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import coverimg from "./img/cover.png";
 import profileimg from "./img/profile.png";
 import star from "./img/star.jfif";
@@ -46,6 +47,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const ITEM_HEIGHT = 48;
 
+
 const USER_DATA = gql`
     query user($token: String!) {
         user(token: $token) {
@@ -65,12 +67,14 @@ const USER_DATA = gql`
             primarySchool
             website
             fullName
+            admin
         }
     }
 `;
 
 export const Profilepage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {
         loading: userDataLoading,
         data: userData,
@@ -103,6 +107,10 @@ export const Profilepage = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const approveRequest = () => {
+        navigate("/accountApprove");
+      };
 
     const [profilePic, setprofilePic] = React.useState({});
     const [postData, setpostData] = useState([]);
@@ -300,6 +308,13 @@ export const Profilepage = () => {
             });
         }
     };
+
+    const [showApproveRequest, setApproveRequest] = useState(false);
+
+    const handleApproveRequest=()=>{
+        setApproveRequest(true)
+    }
+    
     return userDataLoading ? (
         <div>loading...</div>
     ) : (
@@ -358,6 +373,16 @@ export const Profilepage = () => {
                             <img src={micon} alt="" />
                             message &nbsp;{" "}
                         </Button>
+                        <br></br>
+                       { userData.user.admin && (
+                        <div>
+                        <Button type="button" onClick={approveRequest}>
+                          <img src={micon} alt="" />
+                          UserApprove &nbsp;
+                        </Button>
+                    
+                      </div>
+                        )}
                     </div>
                 </div>
 
@@ -503,7 +528,7 @@ export const Profilepage = () => {
                                         <p>{userData.user.username}</p>
                                         <small>
                                             Public
-                                            <i class="fas fa-caret-down"></i>
+                                            <i className="fas fa-caret-down"></i>
                                         </small>
                                     </div>
                                 </div>

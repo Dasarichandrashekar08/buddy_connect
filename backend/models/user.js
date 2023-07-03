@@ -75,7 +75,7 @@ const UserSchema = new Schema({
     },
     bio: {
         type: String,
-        default: "Hola, I'm using Geek Connect 👋",
+        default: "Hello, I'm using Buddy Connect 👋",
     },
     profilePic: {
         type: String,
