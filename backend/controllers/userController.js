@@ -7,10 +7,21 @@ const verify = require("../middlewares/verifyuser").verifyuser;
 const bcrypt = require("bcrypt");
 const sgMail = require("@sendgrid/mail");
 const path = require("path");
+const nodemailer = require('nodemailer');
 
 console.log(process.env.SENDGRID_API);
 
 sgMail.setApiKey(process.env.SENDGRID_API);
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+      user: 'theresa.tromp@ethereal.email',
+      pass: '3b8yKM6pFtBjFBPNCV',
+    },
+  });
+  transporter.verify().then(console.log).catch(console.error);
 
 exports.userAuth = async (req, res, next) => {
     try {
@@ -42,6 +53,7 @@ exports.rootUserLogin = async (req, res, next) => {
     try {
         console.log(req.body);
         const { email, password } = req.body;
+        console.log(email,password)
         const user = await User.findOne({ email, admin: true });
         if (!user) {
             return res.json({
@@ -49,6 +61,7 @@ exports.rootUserLogin = async (req, res, next) => {
             });
         }
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log("jenfejgn",isMatch)
         if (!isMatch) {
             return res.json({
                 message: "Invalid password",
@@ -87,12 +100,23 @@ exports.forgotPassword = async (req, res, next) => {
             },
             process.env.JWT_SECRET
         );
-        const res = await sgMail.send({
-            to: user.email,
-            from: "geekconnekt@gmail.com",
-            subject: "Change PassWord!",
+        // const res = await sgMail.send({
+        //     to: user.email,
+        //     from: "geekconnekt@gmail.com",
+        //     subject: "Change PassWord!",
+        //     html: `<div><h1>Change Password Request!</h1><p>Click the Below link to change the password of your account</p><br/><br/><br/><a href=http://localhost:8000/changeUserPass/${userToken}>Change Password</a></div>`,
+        // });
+        
+        transporter.sendMail({
+            from: 'dasarichandrashekar08@gmail.com', // sender address
+            to: user.email, // list of receivers
+            subject: "Change PassWord!", // Subject line
+            text: "Change PassWord", // plain text body
             html: `<div><h1>Change Password Request!</h1><p>Click the Below link to change the password of your account</p><br/><br/><br/><a href=http://localhost:8000/changeUserPass/${userToken}>Change Password</a></div>`,
-        });
+          }).then(info => {
+            console.log({info});
+          }).catch(console.error);
+
         console.log("Email res: ", res);
     } catch (error) {
         return res.status(500).json({
@@ -166,18 +190,29 @@ exports.signUpUser = async (req, res, next) => {
                 },
                 process.env.JWT_SECRET
             );
+            console.log("userToken", userToken);
             console.log("SENDING EMAIL TO: ", email);
-            try {
-                const res = await sgMail.send({
-                    to: email.toString(),
-                    from: "geekconnekt@gmail.com",
-                    subject: "Verify your account!",
-                    html: `<div><h1>Please Verify you Account!</h1><p>Click the Below link to verify your account</p><br/><br/><br/><a href=http://localhost:8000/verifySignUp/${userToken}>Verifiy Your Email</a></div>`,
-                });
-                console.log("Email res: ", res);
-            } catch (error) {
-                console.log(error);
-            }
+            // try {
+            //     const res = await sgMail.send({
+            //         to: email.toString(),
+            //         from: "dasarichandrashekar08@gmail.com",
+            //         subject: "Verify your account!",
+            //         html: `<div><h1>Please Verify you Account!</h1><p>Click the Below link to verify your account</p><br/><br/><br/><a href=http://localhost:8000/verifySignUp/${userToken}>Verifiy Your Email</a></div>`,
+            //     });
+            //     console.log("Email res: ", res);
+            // } catch (error) {
+            //     console.log(error);
+            // }
+            transporter.sendMail({
+                from: 'dasarichandrashekar08@gmail.com', // sender address
+                to: email.toString(), // list of receivers
+                subject: "Verify your account!", // Subject line
+                text: "Welcome aboard", // plain text body
+                html: `<div><h1>Please Verify you Account!</h1><p>Click the Below link to verify your account</p><br/><br/><br/><a href=http://localhost:8000/verifySignUp/${userToken}>Verifiy Your Email</a></div>`, // html body
+              }).then(info => {
+                console.log({info});
+              }).catch(console.error);
+
             res.json({
                 token: userToken,
                 username: username.trim(),
